@@ -16,6 +16,7 @@
     "express": "^4.13.4",
     "express-ejs-layouts": "^2.1.0",
     "express-session": "^1.13.0",
+    "flash": "^1.1.0",
     "pg": "^4.5.3",
     "pg-hstore": "^2.3.2",
     "request": "^2.72.0",

@@ -3,6 +3,8 @@ var bodyParser = require('body-parser');
 var ejsLayouts = require('express-ejs-layouts');
 var session = require('express-session');
 var request = require('request');
+var flash = require('flash');
+var Twitter = require('twitter');
 var db = require('./models');
 var app = express();
 
@@ -10,14 +12,12 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(ejsLayouts);
 app.use(express.static(__dirname + '/public'));
+
 app.use(session({
   secret: 'flowersbehinduniverse',
   resave: false,
   saveUninitialized: true
 }));
-
-var authCtrl = require("./controllers/auth")
-app.use("/auth", authCtrl);
 
 app.use(function(req, res, next) {
   if (req.session.userId) {
@@ -25,7 +25,6 @@ app.use(function(req, res, next) {
       req.currentUser = user;
       res.locals.currentUser = user;
       next();
-      console.log(currentUser);
     });
   } else {
     req.currentUser = false;
@@ -33,6 +32,19 @@ app.use(function(req, res, next) {
     next();
   }
 });
+
+
+var authCtrl = require("./controllers/auth")
+app.use("/auth", authCtrl);
+
+var client = new Twitter({
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+});
+
+
 
 app.get("/", function(req, res) {
   // console.log(req.session);
@@ -50,6 +62,11 @@ app.get("/user", function(req, res) {
 
 app.get("/logout", function(req, res) {
   res.redirect('/');
+});
+
+
+client.get('', {q: 'node.js'}, function(error, tweets, response){
+   console.log(tweets);
 });
 
 app.get("/art", function(req, res) {
