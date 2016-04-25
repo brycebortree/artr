@@ -56,7 +56,6 @@ nav {
 
 .inline {
   text-align: center;
-  
 }
 
 .trans {
@@ -65,4 +64,16 @@ nav {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
   opacity: .9;
+}
+
+.bold {
+  text-decoration-style: bold;
+}
+
+.italic {
+  text-decoration-style: italic;
+}
+
+ul {
+  list-style-type: none;
 }

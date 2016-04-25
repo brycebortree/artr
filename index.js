@@ -1,83 +1,55 @@
 var express = require('express');
-var ejsLayouts = require('express-ejs-layouts');
-var request = require('request');
 var bodyParser = require('body-parser');
+var ejsLayouts = require('express-ejs-layouts');
 var session = require('express-session');
+var request = require('request');
 var db = require('./models');
 var app = express();
 
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(ejsLayouts);
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({extended:false}));
 app.use(session({
   secret: 'flowersbehinduniverse',
   resave: false,
   saveUninitialized: true
 }));
 
+var authCtrl = require("./controllers/auth")
+app.use("/auth", authCtrl);
+
+app.use(function(req, res, next) {
+  if (req.session.userId) {
+    db.user.findById(req.session.userId).then(function(user) {
+      req.currentUser = user;
+      res.locals.currentUser = user;
+      next();
+      console.log(currentUser);
+    });
+  } else {
+    req.currentUser = false;
+    res.locals.currentUser = false;
+    next();
+  }
+});
+
 app.get("/", function(req, res) {
+  // console.log(req.session);
+  req.session.whatever="hello!!!";
   res.render('home');
 });
 
 app.get("/art", function(req, res) {
-  res.render('show');
-});
-
-app.get("/signup", function(req, res) {
-  res.render('signup');
+  res.render('showart');
 });
 
 app.get("/user", function(req, res) {
   res.render('user');
 });
 
-app.post('/signup', function(req, res) {
-  console.log(req.body);
-  db.user.findOrCreate({
-    where: {
-      email: req.body.email
-  }, 
-  defaults: {
-    username: req.body.username,
-    password: req.body.password
-    }
-  }).spread(function(user, created){
-    if(created) {
-        res.redirect('/user');
-    } else {
-        req.flash('danger', 'username already taken. Please choose another username.');
-        res.redirect('signup');
-    }
-  }).catch(function(err){
-    res.send(err);
-  });
-});
-
-app.get("/auth/login", function(req, res) {
-  res.render('login');
-});
-
-app.post('/auth/login', function(req, res) {
-  console.log(req.body);
-  db.user.findOrCreate({
-    where: {
-      username: req.body.username
-  }, 
-  defaults: {
-    email: req.body.email,
-    password: req.body.password
-    }
-  }).spread(function(user, created){
-    if(created) {
-        res.redirect('/user');
-    } else {
-        req.flash('danger', 'username already taken. Please choose another username.');
-        res.redirect('/auth/login');
-    }
-  }).catch(function(err){
-    res.send(err);
-  });
+app.get("/logout", function(req, res) {
+  res.redirect('/');
 });
 
 app.get("/art", function(req, res) {
