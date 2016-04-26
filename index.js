@@ -80,9 +80,9 @@ app.get("/tweets", function(req, res){
     result_type: 'mixed',
     lang: 'en'
   }, function(error, tweets, response){
-    console.log(tweets.statuses[0].text);
+    console.log(tweets.statuses);
     console.log(req.body);
-    res.send(tweets.statuses[0].text);
+    res.send(tweets.statuses);
   });
 });
 
