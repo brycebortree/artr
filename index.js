@@ -5,8 +5,8 @@ var session = require('express-session');
 var request = require('request');
 var flash = require('connect-flash');
 var Twitter = require('twitter');
-var ig = require('instagram-node').instagram();
-var Flickr = require("flickrapi"),
+// var ig = require('instagram-node').instagram();
+var Flickr = require("flickrapi");
 var db = require('./models');
 var app = express();
 
@@ -45,30 +45,15 @@ var client = new Twitter({
   access_token_secret: process.env.TWIT_ACCESS_TOKEN_SECRET
 });
 
-ig.use({ access_token: process.env.INSTA_AUTH });
-ig.use({ client_id: process.env.INSTA_CLIENT,
-         client_secret: process.env.INSTA_SECRET });
+// ig.use({ access_token: process.env.INSTA_AUTH });
+// ig.use({ client_id: process.env.INSTA_CLIENT,
+//          client_secret: process.env.INSTA_SECRET });
 
+var Flickr = require("flickrapi"),
     flickrOptions = {
       api_key: process.env.FLICKR_KEY,
       secret: process.env.FLICKR_SECRET
     };
- 
-Flickr.tokenOnly(flickrOptions, function(error, flickr) {
-  app.get("/pics", function(req, res) {
-  flickr.photos.search({
-    tags: flickr.options.tags,
-    content_type: flickr.options.1
-    page: 1,
-    per_page: 500
-  }, function(err, result) {
-    console.log(result);
-    res.send(result);
-    });
-  });
-});
-
-
 
 app.get("/", function(req, res) {
   res.render('home');
@@ -87,55 +72,40 @@ app.get("/user", function(req, res) {
 });
 
 app.get("/tweets", function(req, res){
-  // var query = req.query.query;
+  // var query = req.body.query;
   var query = "kitten";
   console.log(query);
-  client.get('search/tweets', {q: 'query'}, function(error, tweets, response){
-    console.log(tweets);
+  client.get('search/tweets', {
+    q: query,
+    result_type: 'mixed',
+    lang: 'en'
+  }, function(error, tweets, response){
+    console.log(tweets.statuses[0].text);
     console.log(req.body);
-    res.send(tweets);
-    //  if (!error && response.statusCode == 200) {
-    //     var data = JSON.parse(req.body);
-    //     var results = data.text;
-    //     res.render("choose", {results: results});
-    //   } else {
-    //     res.render("error");
-    //   }
+    res.send(tweets.statuses[0].text);
   });
 });
 
-// app.get("/instas", function(req, res){
-//   // var query = req.query.query;
-//   var query = "kitten";
-//   console.log(query);
-//   client.get('search/tweets', {q: 'query'}, function(error, tweets, response){
-//     console.log(tweets);
-//     console.log(req.body);
-//     res.send(tweets);
-//     });
-// });
+Flickr.tokenOnly(flickrOptions, function(error, flickr) {
+  app.get("/pics", function(req, res) {
+    var query = "kitten";
 
-// app.get("/art", function(req, res) {
-//   var query = req.query.q;
-//   console.log(query);
-//   var qs = {
-//     s: query
-//   }
-//   request({
-//     url: 'https://api.twitter.com/1.1/search/tweets.json',
-//     qs: qs
-//     }, function (error, response, body) {
-//       if (!error && response.statusCode == 200) {
-//         var data = JSON.parse(body);
-//         var results = data.Search;
-//         res.render("show", {results: results});
-//       } else {
-//         res.render("error");
-//       }
-//   });
-// });
+    flickr.photos.search({
+      tags: query,
+      content_type: 1,
+      nojsoncallback: 1,
+      page: 1,
+      per_page: 15
+    }, function(err, result) {
+      if(err) {throw err};
+      console.log(result);
+      res.send(result.photos[0]);
+    });
+  });
+});
+
 
 var port = 3000;
 app.listen(process.env.PORT || port, function(){
-  console.log('you\'re like a really great listener');
+  console.log('you\'re like a really great listener, 3000');
 });
