@@ -44,8 +44,6 @@ var client = new Twitter({
 });
 
 app.get("/", function(req, res) {
-  // console.log(req.session);
-  req.session.whatever="hello!!!";
   res.render('home');
 });
 
@@ -61,26 +59,34 @@ app.get("/user", function(req, res) {
   }
 });
 
-app.get("/logout", function(req, res) {
-  res.redirect('/');
-});
-
 app.get("/tweets", function(req, res){
   // var query = req.query.query;
   var query = "kitten";
   console.log(query);
   client.get('search/tweets', {q: 'query'}, function(error, tweets, response){
     console.log(tweets);
+    console.log(req.body);
     res.send(tweets);
-     if (!error && response.statusCode == 200) {
-        var data = JSON.parse(body);
-        var results = data.Search;
-        res.render("choose", {results: results});
-      } else {
-        res.render("error");
-      }
+    //  if (!error && response.statusCode == 200) {
+    //     var data = JSON.parse(req.body);
+    //     var results = data.text;
+    //     res.render("choose", {results: results});
+    //   } else {
+    //     res.render("error");
+    //   }
   });
 });
+
+// app.get("/instas", function(req, res){
+//   // var query = req.query.query;
+//   var query = "kitten";
+//   console.log(query);
+//   client.get('search/tweets', {q: 'query'}, function(error, tweets, response){
+//     console.log(tweets);
+//     console.log(req.body);
+//     res.send(tweets);
+//     });
+// });
 
 // app.get("/art", function(req, res) {
 //   var query = req.query.q;

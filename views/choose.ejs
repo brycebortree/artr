@@ -1,0 +1,7 @@
+  <div>
+    <% results.forEach(function(result) { %>
+      <p><%= result.statuses.text %></p>
+      <p><%= result.statuses.user.screen_name %></p>
+<!--       <button class="addFav">Favorite </button>-->
+       <% }); %>
+  </div>
