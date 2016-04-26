@@ -5,6 +5,8 @@ var session = require('express-session');
 var request = require('request');
 var flash = require('connect-flash');
 var Twitter = require('twitter');
+var ig = require('instagram-node').instagram();
+var Flickr = require("flickrapi"),
 var db = require('./models');
 var app = express();
 
@@ -43,6 +45,31 @@ var client = new Twitter({
   access_token_secret: process.env.TWIT_ACCESS_TOKEN_SECRET
 });
 
+ig.use({ access_token: process.env.INSTA_AUTH });
+ig.use({ client_id: process.env.INSTA_CLIENT,
+         client_secret: process.env.INSTA_SECRET });
+
+    flickrOptions = {
+      api_key: process.env.FLICKR_KEY,
+      secret: process.env.FLICKR_SECRET
+    };
+ 
+Flickr.tokenOnly(flickrOptions, function(error, flickr) {
+  app.get("/pics", function(req, res) {
+  flickr.photos.search({
+    tags: flickr.options.tags,
+    content_type: flickr.options.1
+    page: 1,
+    per_page: 500
+  }, function(err, result) {
+    console.log(result);
+    res.send(result);
+    });
+  });
+});
+
+
+
 app.get("/", function(req, res) {
   res.render('home');
 });
@@ -55,7 +82,7 @@ app.get("/user", function(req, res) {
   if (req.currentUser) {
   res.render('user');
   } else {
-    res.send('sorry, you must be logged in to have an account');
+    res.send('you must log in to create an account');
   }
 });
 
@@ -109,4 +136,6 @@ app.get("/tweets", function(req, res){
 // });
 
 var port = 3000;
-app.listen(process.env.PORT || port);
+app.listen(process.env.PORT || port, function(){
+  console.log('you\'re like a really great listener');
+});
