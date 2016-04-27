@@ -6,8 +6,8 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var Twitter = require('twitter');
 var Flickr = require("flickrapi");
-var db = require('./models');
 var app = express();
+var db = require('./models');
 
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);
@@ -124,20 +124,23 @@ Flickr.tokenOnly(flickrOptions, function(error, flickr) {
       if(err) {
         res.send(err);
       };
-      flicks = flicks.push(flickResults.photos.photo);
+      flicks = flicks.concat(flickResults.photos.photo);
 
       client.get('search/tweets', {
         q: q,
-        result_type: 'mixed',
+        result_type: 'popular',
         lang: 'en'
       }, function(error, tweets, response){
         if(error) {
           res.send(err);
-        };
-        twits = twits.push(tweets.statuses);
+        } else {
+        twits = twits.concat(tweets.statuses);
         console.log(flickResults.photos.photo);
+        console.log(tweets.statuses);
+        console.log(flicks);
         console.log(tweets);
-        res.render("choose", {flicks: flicks, twits: twits});
+        res.render("choose", {flicks: flicks, twits: twits, q:q});
+        }
       });
     });
   });

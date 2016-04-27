@@ -1,14 +1,17 @@
 <div>
+  <% console.log(q); %>
   <% flicks.forEach(function(flick) { %>
-    <p><img src="http://farm<%= flick.farm%>.staticflickr.com/<%= flick.server %>/<%= flick.id %>_<%= flick.secret %>.jpg"></p>
+    <p><img src="http://farm<%= flick.farm %>.staticflickr.com/<%= flick.server %>/<%= flick.id %>_<%= flick.secret %>.jpg" /></p>
      <% }); %>
 </div>
 
-<div>
-  <% twits.forEach(function(tweet) { %>
-    <p><%= tweet.statuses.user.name %></p>
-    <p><%= query %>, 2016</p>
-    <p>The Artr</p>
-    <p>Artist statement:<%= tweet.statuses.text %></p>
-     <% }); %>
-</div>
+
+<% twits.forEach(function(tweet) { %>
+  <div class="card">
+    <p>Artist: <%= tweet.user.name %></p>
+    <p>Title: <%= q %>, 2016</p>
+    <p>Medium: The Artr</p>
+    <p>Artist statement: <%= tweet.text %></p>
+    </div>
+  <% }); %>
+

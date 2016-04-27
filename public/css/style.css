@@ -77,3 +77,11 @@ nav {
 ul {
   list-style-type: none;
 }
+
+.card {
+  width: 500px;
+  height:250px;
+  background-color: white;
+  background-image: url('../assets/papertexture.jpg');
+  font-family: helvetica;
+}
