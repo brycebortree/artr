@@ -1,19 +1,18 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var ejsLayouts = require('express-ejs-layouts');
+var bodyParser = require('body-parser');
 var session = require('express-session');
 var request = require('request');
 var flash = require('connect-flash');
 var Twitter = require('twitter');
-// var ig = require('instagram-node').instagram();
 var Flickr = require("flickrapi");
 var db = require('./models');
 var app = express();
 
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended:false}));
 app.use(ejsLayouts);
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(session({
   secret: 'flowersbehinduniverse',
@@ -59,8 +58,12 @@ app.get("/", function(req, res) {
   res.render('home');
 });
 
-app.get("/art", function(req, res) {
+app.get("/showart", function(req, res) {
   res.render('showart');
+});
+
+app.get("/choose", function(req, res) {
+  res.render('choose');
 });
 
 app.get("/user", function(req, res) {
@@ -74,7 +77,8 @@ app.get("/user", function(req, res) {
 app.get("/tweets", function(req, res){
   // var query = req.body.query;
   var query = "kitten";
-  console.log(query);
+  console.log(query + " twitter");
+
   client.get('search/tweets', {
     q: query,
     result_type: 'mixed',
@@ -99,8 +103,56 @@ Flickr.tokenOnly(flickrOptions, function(error, flickr) {
     }, function(err, result) {
       if(err) {throw err};
       console.log(result);
-      res.send(result.photos[0]);
+      res.send(result.photos);
     });
+  });
+});
+
+Flickr.tokenOnly(flickrOptions, function(error, flickr) {
+  app.get("/art", function(req, res) {
+
+    var q = req.query.q;
+    console.log(q + " flickr");
+
+    flickr.photos.search({
+      tags: q,
+      content_type: 1,
+      nojsoncallback: 1,
+      page: 1,
+      per_page: 15
+    }, function(err, results) {
+      if(err) {throw err};
+      console.log(results);
+    }).then(
+        function(results){
+          client.get('search/tweets', {
+          q: query,
+          result_type: 'mixed',
+          lang: 'en'
+        }, function(error, tweets, response){
+          console.log(tweets.statuses);
+          console.log(req.body);
+          res.send(tweets.statuses);
+        });
+      });
+        // res.render("choose", results);
+  });
+});
+
+app.post("/art", function(req, res) {
+  var newArt = {twitUser: req.body.imdbID, 
+                query: req.body.title, 
+                tweetContent: req.body.year,
+                tweetId: req.body.year,
+                flickrTitle: req.body.year,
+                farmId: req.body.year,
+                serverId: req.body.WHATEVER,
+                flickrId: req.body.WHATEVER,
+                secretId: req.body.WHATEVER};
+
+  db.art.create(newArt).then(function(art){
+    console.log(art);
+    res.redirect('/choose');
   });
 });
 
