@@ -1,6 +1,12 @@
-  <div>
-    <% results.forEach(function(result) { %>
-      <p><%= result.photo[i].id %></p>
-      <p><%= result.photo[i].owner %></p>
-       <% }); %>
-  </div>
+<div>
+  <% results.forEach(function(result) { %>
+    <p><%= result.photo[i].id %></p>
+    <p><%= result.photo[i].owner %></p>
+     <% }); %>
+</div>
+<div>
+  <% tweets.forEach(function(tweet) { %>
+    <p><%= tweet.statuses.text %></p>
+    <p><%= tweet.statuses.text %></p>
+     <% }); %>
+</div>

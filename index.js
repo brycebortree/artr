@@ -120,23 +120,22 @@ Flickr.tokenOnly(flickrOptions, function(error, flickr) {
       nojsoncallback: 1,
       page: 1,
       per_page: 15
-    }, function(err, results) {
+    }, function(err, flickResults) {
       if(err) {throw err};
-      console.log(results);
-    }).then(
-        function(results){
-          client.get('search/tweets', {
-          q: query,
-          result_type: 'mixed',
-          lang: 'en'
-        }, function(error, tweets, response){
-          console.log(tweets.statuses);
-          console.log(req.body);
-          res.send(tweets.statuses);
-        });
+      res.send(flickResults);
       });
+
+    client.get('search/tweets', {
+      q: q,
+      result_type: 'mixed',
+      lang: 'en'
+    }, function(error, tweets, response){
+      console.log(tweets.statuses);
+      console.log(req.body);
+      res.send(tweets.statuses);
+    });
         // res.render("choose", results);
-  });
+    });
 });
 
 app.post("/art", function(req, res) {
