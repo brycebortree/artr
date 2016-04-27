@@ -1,8 +1,8 @@
 var express = require('express');
 var ejsLayouts = require('express-ejs-layouts');
+var request = require('request');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var request = require('request');
 var flash = require('connect-flash');
 var Twitter = require('twitter');
 var Flickr = require("flickrapi");
@@ -75,7 +75,6 @@ app.get("/user", function(req, res) {
 });
 
 app.get("/tweets", function(req, res){
-  // var query = req.body.query;
   var query = "kitten";
   console.log(query + " twitter");
 
@@ -103,16 +102,17 @@ Flickr.tokenOnly(flickrOptions, function(error, flickr) {
     }, function(err, result) {
       if(err) {throw err};
       console.log(result);
-      res.send(result.photos);
+      res.send(result.photos.photo);
     });
   });
 });
 
 Flickr.tokenOnly(flickrOptions, function(error, flickr) {
   app.get("/art", function(req, res) {
+    var flicks = [];
+    var twits = [];
 
     var q = req.query.q;
-    console.log(q + " flickr");
 
     flickr.photos.search({
       tags: q,
@@ -121,39 +121,44 @@ Flickr.tokenOnly(flickrOptions, function(error, flickr) {
       page: 1,
       per_page: 15
     }, function(err, flickResults) {
-      if(err) {throw err};
-      res.send(flickResults);
+      if(err) {
+        res.send(err);
+      };
+      flicks = flicks.push(flickResults.photos.photo);
+
+      client.get('search/tweets', {
+        q: q,
+        result_type: 'mixed',
+        lang: 'en'
+      }, function(error, tweets, response){
+        if(error) {
+          res.send(err);
+        };
+        twits = twits.push(tweets.statuses);
+        console.log(flickResults.photos.photo);
+        console.log(tweets);
+        res.render("choose", {flicks: flicks, twits: twits});
       });
-
-    client.get('search/tweets', {
-      q: q,
-      result_type: 'mixed',
-      lang: 'en'
-    }, function(error, tweets, response){
-      console.log(tweets.statuses);
-      console.log(req.body);
-      res.send(tweets.statuses);
     });
-        // res.render("choose", results);
-    });
-});
-
-app.post("/art", function(req, res) {
-  var newArt = {twitUser: req.body.imdbID, 
-                query: req.body.title, 
-                tweetContent: req.body.year,
-                tweetId: req.body.year,
-                flickrTitle: req.body.year,
-                farmId: req.body.year,
-                serverId: req.body.WHATEVER,
-                flickrId: req.body.WHATEVER,
-                secretId: req.body.WHATEVER};
-
-  db.art.create(newArt).then(function(art){
-    console.log(art);
-    res.redirect('/choose');
   });
 });
+
+// app.post("/art", function(req, res) {
+//   var newArt = {twitUser: req.body.imdbID, 
+//                 query: req.body.title, 
+//                 tweetContent: req.body.year,
+//                 tweetId: req.body.year,
+//                 flickrTitle: req.body.year,
+//                 farmId: req.body.year,
+//                 serverId: req.body.WHATEVER,
+//                 flickrId: req.body.WHATEVER,
+//                 secretId: req.body.WHATEVER};
+
+//   db.art.create(newArt).then(function(art){
+//     console.log(art);
+//     res.redirect('/choose');
+//   });
+// });
 
 
 var port = 3000;
