@@ -78,10 +78,21 @@ ul {
   list-style-type: none;
 }
 
-.card {
+.cards {
   width: 500px;
   height:250px;
   background-color: white;
   background-image: url('../assets/papertexture.jpg');
   font-family: helvetica;
+}
+
+.pics {
+  float:left;
+  width:600;
+  height:600;
+  background-size:100% 100%;
+}
+
+.selected {
+  border: 5px solid aliceblue;
 }

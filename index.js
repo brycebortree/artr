@@ -44,15 +44,11 @@ var client = new Twitter({
   access_token_secret: process.env.TWIT_ACCESS_TOKEN_SECRET
 });
 
-// ig.use({ access_token: process.env.INSTA_AUTH });
-// ig.use({ client_id: process.env.INSTA_CLIENT,
-//          client_secret: process.env.INSTA_SECRET });
-
 var Flickr = require("flickrapi"),
     flickrOptions = {
       api_key: process.env.FLICKR_KEY,
       secret: process.env.FLICKR_SECRET
-    };
+};
 
 app.get("/", function(req, res) {
   res.render('home');
@@ -72,39 +68,6 @@ app.get("/user", function(req, res) {
   } else {
     res.send('you must log in to create an account');
   }
-});
-
-app.get("/tweets", function(req, res){
-  var query = "kitten";
-  console.log(query + " twitter");
-
-  client.get('search/tweets', {
-    q: query,
-    result_type: 'mixed',
-    lang: 'en'
-  }, function(error, tweets, response){
-    console.log(tweets.statuses);
-    console.log(req.body);
-    res.send(tweets.statuses);
-  });
-});
-
-Flickr.tokenOnly(flickrOptions, function(error, flickr) {
-  app.get("/pics", function(req, res) {
-    var query = "kitten";
-
-    flickr.photos.search({
-      tags: query,
-      content_type: 1,
-      nojsoncallback: 1,
-      page: 1,
-      per_page: 15
-    }, function(err, result) {
-      if(err) {throw err};
-      console.log(result);
-      res.send(result.photos.photo);
-    });
-  });
 });
 
 Flickr.tokenOnly(flickrOptions, function(error, flickr) {
@@ -135,10 +98,6 @@ Flickr.tokenOnly(flickrOptions, function(error, flickr) {
           res.send(err);
         } else {
         twits = twits.concat(tweets.statuses);
-        console.log(flickResults.photos.photo);
-        console.log(tweets.statuses);
-        console.log(flicks);
-        console.log(tweets);
         res.render("choose", {flicks: flicks, twits: twits, q:q});
         }
       });
