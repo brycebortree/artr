@@ -1,1 +1,11 @@
-<h1> user is connected </h1>
+<h1> Your Gallery </h1>
+    <% arts.forEach(function(art) { %>
+      <div>
+        <img src="<%= art.flickrURL %>">
+        <p><%= art.twitUser %></p>
+        <p><%= art.query %>, 2016</p>
+        <p><%= art.tweetStatement %></p>
+              </div>
+<!--       <button class="addFav">Favorite </button>-->
+       <% }); %>
+  

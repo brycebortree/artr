@@ -68,7 +68,9 @@ app.get("/choose", function(req, res) {
 
 app.get("/user", function(req, res) {
   if (req.currentUser) {
-  res.render('user');
+    db.art.findAll().then(function(arts) {
+      res.render('user', {arts:arts});
+    });
   } else {
     res.send('you must log in to create an account');
   }
