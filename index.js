@@ -158,7 +158,6 @@ app.post("/art", function(req, res) {
 });
 
 
-var port = 3000;
-app.listen(process.env.PORT || port, function(){
+app.listen(process.env.PORT || 3000, function(){
   console.log('you\'re like a really great listener, 3000');
 });
