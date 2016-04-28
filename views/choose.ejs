@@ -1,9 +1,8 @@
-<% flicks.forEach(function(flick) { %>
-  <div class ="pics">
-    <p><img src="http://farm<%= flick.farm %>.staticflickr.com/<%= flick.server %>/<%= flick.id %>_<%= flick.secret %>_z.jpg" /></p>
-  </div>
-<% }); %>
-
+<ul id="scroller">
+  <% flicks.forEach(function(flick) { %>
+    <li class="pics"><img src="http://farm<%= flick.farm %>.staticflickr.com/<%= flick.server %>/<%= flick.id %>_<%= flick.secret %>_z.jpg" width="350" height="350"></li>
+  <% }); %>
+</ul>        
 
 <% twits.forEach(function(tweet) { %>
   <div class="card">

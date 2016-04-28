@@ -49,4 +49,3 @@ $(document).ready(function(){
     window.location = '/user'
     });
   });
-});
