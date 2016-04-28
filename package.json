@@ -26,6 +26,7 @@
     "request": "^2.72.0",
     "sequelize": "^3.21.0",
     "sequelize-cli": "^2.4.0",
+    "twitter": "^1.2.5",
     "url": "^0.11.0"
   }
 }
