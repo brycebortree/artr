@@ -3,7 +3,7 @@ div {
   border: solid .5px black;
 }
 
-h1, h2 {
+h1, h2, h3 {
   background-color: white;
   color: black;
   text-align: center;
@@ -87,10 +87,7 @@ ul {
 }
 
 .pics {
-/*  float:left;
-  width:600;
-  height:600;
-  background-size:100% 100%;*/
+
 }
 
 .selected {

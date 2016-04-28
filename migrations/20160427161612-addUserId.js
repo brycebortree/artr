@@ -14,25 +14,13 @@ module.exports = {
       query: {
         type: Sequelize.STRING
       },
-      tweetContent: {
+      tweetStatement: {
         type: Sequelize.STRING
       },
-      tweetId: {
-        type: Sequelize.INTEGER
-      },
-      flickrTitle: {
+      flickrURL: {
         type: Sequelize.STRING
       },
-      farmId: {
-        type: Sequelize.INTEGER
-      },
-      serverId: {
-        type: Sequelize.INTEGER
-      },
-      flickrId: {
-        type: Sequelize.INTEGER
-      },
-      secretId: {
+      userId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

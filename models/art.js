@@ -3,13 +3,9 @@ module.exports = function(sequelize, DataTypes) {
   var art = sequelize.define('art', {
     twitUser: DataTypes.STRING,
     query: DataTypes.STRING,
-    tweetContent: DataTypes.STRING,
-    tweetId: DataTypes.INTEGER,
-    flickrTitle: DataTypes.STRING,
-    farmId: DataTypes.INTEGER,
-    serverId: DataTypes.INTEGER,
-    flickrId: DataTypes.INTEGER,
-    secretId: DataTypes.INTEGER
+    tweetStatement: DataTypes.STRING,
+    flickrURL: DataTypes.STRING,
+    userId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {

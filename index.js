@@ -59,7 +59,11 @@ app.get("/showart", function(req, res) {
 });
 
 app.get("/choose", function(req, res) {
+  if (req.currentUser) {
   res.render('choose');
+  } else {
+    res.send('you must log in to save your art!');
+  }
 });
 
 app.get("/user", function(req, res) {
@@ -140,19 +144,14 @@ Flickr.tokenOnly(flickrOptions, function(error, flickr) {
 });
 
 app.post("/art", function(req, res) {
-  var newArt = {twitUser: req.body.imdbID, 
-                query: req.body.title, 
-                tweetContent: req.body.year,
-                tweetId: req.body.year,
-                flickrTitle: req.body.year,
-                farmId: req.body.year,
-                serverId: req.body.WHATEVER,
-                flickrId: req.body.WHATEVER,
-                secretId: req.body.WHATEVER};
-
+  var newArt = {twitUser: req.body.twitUser, 
+                query: req.body.query, 
+                tweetStatement: req.body.tweetStatement,
+                flickrURL:req.body.flickrURL,
+                userId: req.session.userId
+                  };
   db.art.create(newArt).then(function(art){
-    console.log(art);
-    res.redirect('/choose');
+    res.send(art);
   });
 });
 
