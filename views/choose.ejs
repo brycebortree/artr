@@ -1,8 +1,22 @@
-<% flicks.forEach(function(flick) { %>
-  <div class ="pics">
-    <p><img src="http://farm<%= flick.farm %>.staticflickr.com/<%= flick.server %>/<%= flick.id %>_<%= flick.secret %>_z.jpg" /></p>
+<div class="col-md-7">
+<div class="carousel slide" id="myCarousel">
+  <div class="carousel-inner">
+    <div class="item active">
+      <div class="col-md-4"><img src="http://placehold.it/500/bbbbbb/fff&amp;text=1" ></div>
+    </div>
+
+    <% flicks.forEach(function(flick) { %>
+      <div class="item pics">
+        <div class="col-md-4"><img src="http://farm<%= flick.farm %>.staticflickr.com/<%= flick.server %>/<%= flick.id %>_<%= flick.secret %>_z.jpg" class="img-responsive" /></div>
+      </div>
+    <% }); %>
+
   </div>
-<% }); %>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+</div>
+</div>
+
 
 
 <% twits.forEach(function(tweet) { %>
