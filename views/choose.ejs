@@ -6,11 +6,12 @@
 
 
 <% twits.forEach(function(tweet) { %>
-  <div class="cards">
-    <p>Artist: <%= currentUser.username %></p>
-    <p>Title: <%= q %>, 2016</p>
+  <div class="card">
+    <p>Artist: <span class="user"> <%= currentUser.username %> </span></p>
+    <p>Title: <span class="query"> <%= q %></span>, 2016</p>
     <p>Medium: The Artr</p>
-    <p>Artist statement: <%= tweet.text %></p>
+    <p>Artist statement: <span class="statement"> <%= tweet.text %></span></p>
   </div>
 <% }); %>
 
+<button type="button" class="saveArt btn btn-success">Save Art</button>

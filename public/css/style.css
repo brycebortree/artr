@@ -78,7 +78,7 @@ ul {
   list-style-type: none;
 }
 
-.cards {
+.card {
   width: 500px;
   height:250px;
   background-color: white;
@@ -87,12 +87,12 @@ ul {
 }
 
 .pics {
-  float:left;
+/*  float:left;
   width:600;
   height:600;
-  background-size:100% 100%;
+  background-size:100% 100%;*/
 }
 
 .selected {
-  border: 5px solid aliceblue;
+  border: 5px solid green;
 }

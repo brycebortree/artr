@@ -70,6 +70,40 @@ app.get("/user", function(req, res) {
   }
 });
 
+app.get("/tweets", function(req, res){
+  // var query = req.body.query;
+  var query = "kitten";
+  console.log(query + " twitter");
+
+  client.get('search/tweets', {
+    q: query,
+    result_type: 'mixed',
+    lang: 'en'
+  }, function(error, tweets, response){
+    console.log(tweets.statuses);
+    console.log(req.body);
+    res.send(tweets.statuses);
+  });
+});
+
+Flickr.tokenOnly(flickrOptions, function(error, flickr) {
+  app.get("/pics", function(req, res) {
+    var query = "kitten";
+
+    flickr.photos.search({
+      tags: query,
+      content_type: 1,
+      nojsoncallback: 1,
+      page: 1,
+      per_page: 15
+    }, function(err, result) {
+      if(err) {throw err};
+      console.log(result.photos.photo);
+      res.send(result.photos.photo);
+    });
+  });
+});
+
 Flickr.tokenOnly(flickrOptions, function(error, flickr) {
   app.get("/art", function(req, res) {
     var flicks = [];
@@ -105,22 +139,22 @@ Flickr.tokenOnly(flickrOptions, function(error, flickr) {
   });
 });
 
-// app.post("/art", function(req, res) {
-//   var newArt = {twitUser: req.body.imdbID, 
-//                 query: req.body.title, 
-//                 tweetContent: req.body.year,
-//                 tweetId: req.body.year,
-//                 flickrTitle: req.body.year,
-//                 farmId: req.body.year,
-//                 serverId: req.body.WHATEVER,
-//                 flickrId: req.body.WHATEVER,
-//                 secretId: req.body.WHATEVER};
+app.post("/art", function(req, res) {
+  var newArt = {twitUser: req.body.imdbID, 
+                query: req.body.title, 
+                tweetContent: req.body.year,
+                tweetId: req.body.year,
+                flickrTitle: req.body.year,
+                farmId: req.body.year,
+                serverId: req.body.WHATEVER,
+                flickrId: req.body.WHATEVER,
+                secretId: req.body.WHATEVER};
 
-//   db.art.create(newArt).then(function(art){
-//     console.log(art);
-//     res.redirect('/choose');
-//   });
-// });
+  db.art.create(newArt).then(function(art){
+    console.log(art);
+    res.redirect('/choose');
+  });
+});
 
 
 var port = 3000;
