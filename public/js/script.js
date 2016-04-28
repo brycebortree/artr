@@ -45,7 +45,8 @@ $(document).ready(function(){
           twitUser:twitUser
     }
   }).success(function(res){
-    window.location('/user');
+    console.log(res);
+    window.location = '/user'
     });
   });
 });
