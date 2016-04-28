@@ -36,3 +36,5 @@ node_modules
 
 # save the token access
 .env
+
+README.md
