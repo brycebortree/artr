@@ -29,7 +29,7 @@ $(document).ready(function(){
 
   $('.saveArt').click(function(e){
     e.preventDefault;
-    var flickrURL = $('.selected img')[0].src;
+    var flickrURL = $('.active img')[0].src;
     var tweetStatement = $('.selected.card .statement').text();
     var query = $('.selected.card .query').text();
     var twitUser = $('.selected.card .user').text();
