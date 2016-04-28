@@ -1,11 +1,16 @@
-<h1> Your Gallery </h1>
-    <% arts.forEach(function(art) { %>
-      <div>
-        <img src="<%= art.flickrURL %>">
-        <p><%= art.twitUser %></p>
-        <p><%= art.query %>, 2016</p>
-        <p><%= art.tweetStatement %></p>
-              </div>
-<!--       <button class="addFav">Favorite </button>-->
-       <% }); %>
+<h1> Your Collection </h1>
+
+  <% arts.forEach(function(art) { %>
+    <div class="pics">
+      <img src="<%= art.flickrURL %>">
+    </div>
+    <div class="card">
+      <p><%= art.twitUser %></p>
+      <p><%= art.query %>, 2016</p>
+      <p>The Artr</p>
+      <p><%= art.tweetStatement %></p>
+    </div>
+    <hr>
+<!--      <button class="delete">Delete</button>
+ -->  <% }); %>
   

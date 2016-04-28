@@ -7,10 +7,10 @@
 
 <% twits.forEach(function(tweet) { %>
   <div class="card">
-    <p>Artist: <span class="user"><%= currentUser.username %></span></p>
-    <p>Title: <span class="query"><%= q %></span>, 2016</p>
-    <p>Medium: The Artr</p>
-    <p>Artist statement:<span class="statement"><%= tweet.text %></span></p>
+    <p><span class="user"><%= currentUser.username %></span></p>
+    <p><span class="query"><%= q %></span>, 2016</p>
+    <p>The Artr</p>
+    <p><span class="statement"><%= tweet.text %></span></p>
   </div>
 <% }); %>
 

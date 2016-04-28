@@ -45,17 +45,13 @@ var client = new Twitter({
 });
 
 var Flickr = require("flickrapi"),
-    flickrOptions = {
-      api_key: process.env.FLICKR_KEY,
-      secret: process.env.FLICKR_SECRET
+  flickrOptions = {
+    api_key: process.env.FLICKR_KEY,
+    secret: process.env.FLICKR_SECRET
 };
 
 app.get("/", function(req, res) {
   res.render('home');
-});
-
-app.get("/showart", function(req, res) {
-  res.render('showart');
 });
 
 app.get("/choose", function(req, res) {
@@ -67,48 +63,23 @@ app.get("/choose", function(req, res) {
 });
 
 app.get("/user", function(req, res) {
-  // if (req.currentUser) {
-    db.art.findAll().then(function(arts) {
+  if (req.currentUser) {
+    db.art.findAll({where: {userId:req.currentUser.id}}).then(function(arts) {
+      console.log(arts);
       res.render('user', {arts:arts});
     });
-  // } else {
-    // res.send('you must log in to create an account');
-  // }
+  } else {
+    res.send('you must log in to create an account');
+  }
 });
 
-app.get("/tweets", function(req, res){
-  // var query = req.body.query;
-  var query = "kitten";
-  console.log(query + " twitter");
-
-  client.get('search/tweets', {
-    q: query,
-    result_type: 'mixed',
-    lang: 'en'
-  }, function(error, tweets, response){
-    console.log(tweets.statuses);
-    console.log(req.body);
-    res.send(tweets.statuses);
-  });
+app.get("/gallery", function(req, res) {
+  db.art.findAll().then(function(arts) {
+    res.render('gallery', {arts:arts});
+   });
 });
 
-Flickr.tokenOnly(flickrOptions, function(error, flickr) {
-  app.get("/pics", function(req, res) {
-    var query = "kitten";
 
-    flickr.photos.search({
-      tags: query,
-      content_type: 1,
-      nojsoncallback: 1,
-      page: 1,
-      per_page: 15
-    }, function(err, result) {
-      if(err) {throw err};
-      console.log(result.photos.photo);
-      res.send(result.photos.photo);
-    });
-  });
-});
 
 Flickr.tokenOnly(flickrOptions, function(error, flickr) {
   app.get("/art", function(req, res) {

@@ -11,7 +11,7 @@ router.post('/signup', function(req, res) {
     where: {email: req.body.email},
     defaults: {username: req.body.username, password: req.body.password}
   }).spread(function(user, created) {
-    res.redirect('/');
+    res.redirect('/auth/login');
   }).catch(function(err) {
     res.send(err);
   });
