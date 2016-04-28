@@ -79,8 +79,6 @@ app.get("/gallery", function(req, res) {
    });
 });
 
-
-
 Flickr.tokenOnly(flickrOptions, function(error, flickr) {
   app.get("/art", function(req, res) {
     var flicks = [];

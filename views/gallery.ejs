@@ -2,13 +2,13 @@
     <% arts.forEach(function(art) { %>
       <div>
         <img src="<%= art.flickrURL %>">
-        <div class="card">
-          <p><%= art.twitUser %></p>
-          <p><%= art.query %>, 2016</p>
-          <p><%= art.tweetStatement %></p>
-        </div>
+      </div>
+      <div class="card">
+        <p><%= art.twitUser %></p>
+        <p><%= art.query %>, 2016</p>
+        <p><%= art.tweetStatement %></p>
       </div>
       <hr>
 <!--       <button class="addFav">Favorite </button>-->
-       <% }); %>
+    <% }); %>
   

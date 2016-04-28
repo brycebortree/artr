@@ -1,6 +1,16 @@
-<form method="GET" action="/art" role ="form">
-  <div class="form-group">
-    <input type="text" name="q" placeholder="search here">
-    <input type="submit" class="addLink"></input>
-  </div>
-</form>
+<div class="container">
+  <form method="GET" action="/art" role ="form">
+    <div class="row col-md-12">
+      <div id="custom-search-input form-group">
+        <div class="input-group">
+          <input type="text" class="search-query form-control" placeholder="search here" name="q"/>
+          <span class="input-group-btn">
+            <button class="btn btn-info" type="button">
+                <span class=" glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
