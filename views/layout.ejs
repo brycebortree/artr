@@ -8,7 +8,8 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
+<!-- very basic navbar -->
+ <nav class="navbar navbar-default" role="navigation">
   <div id="border">
     <a href="/">
       <h1 class="inline">
@@ -29,11 +30,10 @@
     </ul>
   </div>
 </nav> 
-  <div class="trans col-md-offset-2 col-md-8 col-md-offset-2">
-<!--   <p>Hello, <%= currentUser.username %></p>
- -->   
+  <div class="col-md-offset-2 col-md-8 col-md-offset-2">
 
-  <% if (currentUser) { %>
+<!-- greeting-->  
+<% if (currentUser) { %>
    <p>Hello, <%= currentUser.username %></p>
   <% } else {%>
   <p>You're not logged in, traveller!</p>

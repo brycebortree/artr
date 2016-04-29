@@ -167,6 +167,11 @@ a:active {
   background-image: url('../assets/papertexture.jpg');
   font-family: helvetica;
   border:1px black solid;
+  text-align: left;
+}
+
+.pics {
+display: inline-block;
 }
 
 .picContainer {
@@ -177,7 +182,7 @@ a:active {
 }
 
 .tweetContainer {
-  height: 500px;
+  height: 550px;
   width: 500px;
   overflow: scroll;
 }
