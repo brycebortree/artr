@@ -13,6 +13,7 @@ app.set('view engine', 'ejs');
 app.use(ejsLayouts);
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(flash());
 
 app.use(session({
   secret: 'flowersbehinduniverse',
@@ -51,14 +52,16 @@ var Flickr = require("flickrapi"),
 };
 
 app.get("/", function(req, res) {
-  res.render('home');
+  db.art.findOne().then(function(arts) {
+    res.render('home', {arts:arts});
+  });
 });
 
 app.get("/choose", function(req, res) {
   if (req.currentUser) {
-  res.render('choose');
+  res.render('choose', {alerts: req.flash()});
   } else {
-    res.send('you must log in to save your art!');
+    res.render('you must log in to save your art!');
   }
 });
 
