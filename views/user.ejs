@@ -1,4 +1,8 @@
 <h1> Your Collection </h1>
+  <% if(arts.length === 0) { %>
+  <p> Nothing lives here... yet. Go to the front page and make some art!</p>
+<% } %> 
+
 
   <% arts.forEach(function(art) { %>
     <div class="pics">

@@ -49,4 +49,20 @@ $(document).ready(function(){
     window.location = '/user'
     });
   });
+
+  $('.delete').click(function(e){
+    e.preventDefault;
+
+    var art = $(this);
+      $.ajax({
+        url: '/art/',  
+        method: 'DELETE',
+        //anything in data here ends up req.body
+  }).done(function(res){
+    console.log(res);
+    window.location = '/user'
+    });
+  });
+
+
 });

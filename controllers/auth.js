@@ -36,7 +36,7 @@ router.post('/login', function(req, res) {
       res.redirect('/');
     } else {
       req.flash('danger', 'user and/or password invalid');
-      res.redirect('/login', {alerts:req.flash()});
+      res.redirect('/login');
     }
   });
 });
