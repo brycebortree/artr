@@ -170,5 +170,6 @@ a:active {
 }
 
 .selected {
-  border: 10px groove khaki;
+  border: 10px groove khaki!important;
+
 }
