@@ -1,17 +1,24 @@
-<% flicks.forEach(function(flick) { %>
-  <div class ="pics">
-    <p><img src="http://farm<%= flick.farm %>.staticflickr.com/<%= flick.server %>/<%= flick.id %>_<%= flick.secret %>_z.jpg" /></p>
-  </div>
-<% }); %>
+<h3> Click on a picture and tweet of your choice to pair together as modern art! </h3>
 
+<div class="picContainer">
+  <% flicks.forEach(function(flick) { %>
+    <div class ="pics">
+      <p><img src="http://farm<%= flick.farm %>.staticflickr.com/<%= flick.server %>/<%= flick.id %>_<%= flick.secret %>_z.jpg" /></p>
+    </div>
+  <% }); %>
+</div>
 
-<% twits.forEach(function(tweet) { %>
-  <div class="card">
-    <p><span class="user"><%= currentUser.username %></span></p>
-    <p><span class="query"><%= q %></span>, 2016</p>
-    <p>The Artr</p>
-    <p><span class="statement"><%= tweet.text %></span></p>
-  </div>
-<% }); %>
+<p></p>
+
+<div class="tweetContainer">
+  <% twits.forEach(function(tweet) { %>
+    <div class="card">
+      <p><span class="user"><%= currentUser.username %></span></p>
+      <p><span class="query"><%= q %></span>, 2016</p>
+      <p>The Artr</p>
+      <p><span class="statement"><%= tweet.text %></span></p>
+    </div>
+  <% }); %>
+</div>
 
 <button type="button" class="saveArt btn btn-success">Save Art</button>

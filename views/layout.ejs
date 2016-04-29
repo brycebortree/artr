@@ -32,6 +32,11 @@
   <div class="trans col-md-offset-2 col-md-8 col-md-offset-2">
 <!--   <p>Hello, <%= currentUser.username %></p>
  -->   
+
+  <% if (currentUser) { %>
+   <p>Hello, <%= currentUser.username %></p>
+  <% } %>
+  
   <% if (typeof alerts !== 'undefined') { %>
     <% for (key in alerts) { %>
       <% alerts[key].forEach(function(thisMsg) { %>

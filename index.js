@@ -66,7 +66,7 @@ app.get("/user", function(req, res) {
   if (req.currentUser) {
     db.art.findAll({where: {userId:req.currentUser.id}}).then(function(arts) {
       console.log(arts);
-      res.render('user', {arts:arts , alerts: req.flash()});
+      res.render('user', {arts:arts});
     });
   } else {
     res.send('you must log in to save your art!');
@@ -75,7 +75,7 @@ app.get("/user", function(req, res) {
 
 app.get("/gallery", function(req, res) {
   db.art.findAll().then(function(arts) {
-    res.render('gallery', {arts:arts, alerts: req.flash()});
+    res.render('gallery', {arts:arts});
    });
 });
 

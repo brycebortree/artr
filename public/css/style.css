@@ -163,10 +163,20 @@ a:active {
   background-color: white;
   background-image: url('../assets/papertexture.jpg');
   font-family: helvetica;
+  border:1px black solid;
 }
 
-.pics {
+.picContainer {
+  height: 620px;
+  width: 620px;
+  overflow-y:scroll;
+  overflow-x:scroll;
+}
 
+.tweetContainer {
+  height: 500px;
+  width: 500px;
+  overflow: scroll;
 }
 
 .selected {

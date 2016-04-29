@@ -1,14 +1,14 @@
 $(document).ready(function(){
   console.log('locked/loaded');
 
-  function deselectAll() {
+  var deselectAll = function() {
     $('.pics').removeClass('.selected');
   }
 
   $('.pics').click(function(e){
     e.preventDefault();
     console.log('clicked pic!');
-    // $('.pics').deselectAll();
+    deselectAll();
     $(this).toggleClass('selected');
     $(this).click(function(){console.log("already clicked a pic bro");})
   });
