@@ -1,6 +1,25 @@
+
 <h1>Log In To Your Account</h1>
-<form method="POST" action="/auth/login">
-  <input type="text" placeholder="email" name="email">
-  <input type="password" placeholder="password" name="password">
-  <input type="submit" value="Log In">
-</form>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+            <div class="form-login">
+            <h4>Welcome back.</h4>
+            <form method="POST" action="/auth/login">
+              <input type="text" id="userName" name="email" class="form-control input-sm chat-input" placeholder="username" />
+              </br>
+              <input type="text" id="userPassword" name="password" class="form-control input-sm chat-input" placeholder="password" />
+              </br>
+            </form>
+            <div class="wrapper">
+            <span class="group-btn">     
+                <a href="#" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>
+            </span>
+            </div>
+            </div>
+        
+        </div>
+    </div>
+</div>
