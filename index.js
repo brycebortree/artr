@@ -66,16 +66,16 @@ app.get("/user", function(req, res) {
   if (req.currentUser) {
     db.art.findAll({where: {userId:req.currentUser.id}}).then(function(arts) {
       console.log(arts);
-      res.render('user', {arts:arts});
+      res.render('user', {arts:arts , alerts: req.flash()});
     });
   } else {
-    res.send('you must log in to create an account');
+    res.send('you must log in to save your art!');
   }
 });
 
 app.get("/gallery", function(req, res) {
   db.art.findAll().then(function(arts) {
-    res.render('gallery', {arts:arts});
+    res.render('gallery', {arts:arts, alerts: req.flash()});
    });
 });
 
@@ -107,7 +107,7 @@ Flickr.tokenOnly(flickrOptions, function(error, flickr) {
           res.send(err);
         } else {
         twits = twits.concat(tweets.statuses);
-        res.render("choose", {flicks: flicks, twits: twits, q:q});
+        res.render("choose",  {flicks: flicks, twits: twits, q:q});
         }
       });
     });

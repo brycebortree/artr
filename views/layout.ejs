@@ -31,7 +31,16 @@
 </nav> 
   <div class="trans col-md-offset-2 col-md-8 col-md-offset-2">
 <!--   <p>Hello, <%= currentUser.username %></p>
- -->    <%- body%>
+ -->   
+  <% if (typeof alerts !== 'undefined') { %>
+    <% for (key in alerts) { %>
+      <% alerts[key].forEach(function(thisMsg) { %>
+        <div class="alert alert-<%= key %>"><%= thisMsg %></div>
+      <% }); %>
+    <% } %>
+  <% } %>
+  
+  <%- body%>
   </div>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
    <script src="/js/script.js"></script>
