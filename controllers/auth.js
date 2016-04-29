@@ -1,9 +1,12 @@
 var express = require('express');
+var flash = require('connect-flash');
 var db = require('../models');
 var router = express.Router();
 
+router.use(flash());
+
 router.get('/signup', function(req, res) {
-  res.render('auth/signup');
+  res.render('auth/signup', {alerts:req.flash()});
 });
 
 router.post('/signup', function(req, res) {
@@ -11,14 +14,15 @@ router.post('/signup', function(req, res) {
     where: {email: req.body.email},
     defaults: {username: req.body.username, password: req.body.password}
   }).spread(function(user, created) {
-    res.redirect('/auth/login');
+    res.redirect('/auth/login', {alerts:req.flash()});
   }).catch(function(err) {
-    res.send(err);
+    req.flash('danger', 'That username is already in use!');
+    req.redirect('auth/signup');
   });
 });
 
 router.get('/login', function(req, res) {
-  res.render('auth/login');
+  res.render('auth/login', {alerts:req.flash()});
 });
 
 router.post('/login', function(req, res) {
@@ -31,14 +35,15 @@ router.post('/login', function(req, res) {
       req.session.userId = user.id;
       res.redirect('/');
     } else {
-      res.send('user and/or password invalid');
+      req.flash('danger', 'user and/or password invalid');
+      res.redirect('/login', {alerts:req.flash()});
     }
   });
 });
 
 router.get('/logout', function(req, res) {
   req.session.userId = false;
-  res.redirect('/');
+  res.redirect('/', {alerts:req.flash()});
 });
 
 module.exports = router;
