@@ -76,7 +76,7 @@ app.get("/user", function(req, res) {
     });
   } else {
     req.flash('danger', 'You must log in to save your art!');
-    res.redirect(200, '/auth/signup', {alerts: req.flash()});
+    res.redirect('/auth/signup');
   }
 });
 
