@@ -64,7 +64,7 @@ app.get("/choose", function(req, res) {
   res.render('choose', {alerts: req.flash()});
   } else {
     req.flash('danger', 'You must log in to save your art!');
-    res.redirect('/auth/signup');
+    res.redirect('/auth/login');
   }
 });
 
@@ -75,7 +75,7 @@ app.get("/user", function(req, res) {
       res.render('user', {arts:arts, alerts:req.flash()});
     });
   } else {
-    req.flash('danger', 'You must log in to save your art!');
+    req.flash('danger', 'You must have an account to have a profile!');
     res.redirect('/auth/signup');
   }
 });

@@ -11,10 +11,10 @@
   </div>
    <div class="container-fluid inline header">
     <ul>
+      <li><a href="/user"><h4>My Collection</h4></a></li>
+      <li><a href="/gallery"><h4>Gallery</h4></a></li>
       <li><a href="/auth/signup"><h4>Sign Up</h4></a></li>
       <li><a href="/auth/login"><h4>Log In</h4></a></li>
-      <li><a href="/user"><h4>Profile</h4></a></li>
-      <li><a href="/gallery"><h4>Gallery</h4></a></li>
       <li><a href="/auth/logout"><h4>Logout</h4></a></li>
     </ul>
   </div>
@@ -24,7 +24,7 @@
    <% if (currentUser) { %>
      <p>Hello, <%= currentUser.username %>!</p>
     <% } else {%>
-      <p>You're not logged in, traveller!</p>
+      <p>Hello, new artist!</p>
     <% } %>
   </div>
 </nav> 
