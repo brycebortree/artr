@@ -28,7 +28,6 @@ body {
   height: 100%;
   font-family: 'Quicksand', sans-serif;
   margin-top: 20px;
-  width: 90%;
   align: center;
 }
 
@@ -191,10 +190,83 @@ text-align: left;
   overflow: scroll;
 }
 
+.center {
+  display:block;
+  margin: 0 auto;
+}
+
 .behind {
   background-color: white;
 }
 
 .selected {
   border: 10px groove khaki!important;
+}
+
+.panel-body {
+  align: center;
+}
+
+.fucking-button {
+  text-align: center;
+}
+
+#custom-search-input {
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+
+  nav {
+    margin: 0px;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 75px;
+  }
+
+  h2 {
+    font-size: 45px;
+  }
+
+  .font-size {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 45px;
+    margin-top: 50px;
+  }
+
+  h4,.panel-title, a {
+    font-size: 40px;
+  }
+
+  p {
+    font-size: 40px;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  .form-control {
+    height: 50px;
+    font-size: 30px;
+  }
+
+  .btn-sm {
+    font-size: 25px;
+  }
+
+  .alert {
+    font-size: 30px;
+  }
+
+  .modal-dialog {
+    width: 90%;
+    margin: 5%;
+    padding-bottom: 40px;
+}
 }
