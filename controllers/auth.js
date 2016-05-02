@@ -35,7 +35,7 @@ router.post('/login', function(req, res) {
       req.session.userId = user.id;
       res.redirect('/');
     } else {
-      req.flash('danger', 'user and/or password invalid');
+      req.flash('danger', 'Your email and/or password invalid');
       res.redirect('/login');
     }
   });
@@ -43,7 +43,8 @@ router.post('/login', function(req, res) {
 
 router.get('/logout', function(req, res) {
   req.session.userId = false;
-  res.redirect('/', {alerts:req.flash()});
+  req.flash('success', 'You\'ve successfully logged out!')
+  res.redirect('/');
 });
 
 module.exports = router;
