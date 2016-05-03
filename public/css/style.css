@@ -268,5 +268,68 @@ text-align: left;
     width: 90%;
     margin: 5%;
     padding-bottom: 40px;
+  }
 }
+
+
+$navbar-height: 60px;
+$gutter: 40px;
+
+
+* { box-sizing: border-box; }
+
+/*Ugh to body stuff here 
+*//*body { 
+   background:white;  
+}*/
+
+.navbar {
+  background: rgba(0,0,0,0);
+  position: fixed;
+  top:0;
+  left: 0;
+  width:100%;
+  height: $navbar-height;
+  padding-left:$gutter;
+  box-shadow: none;
+  
+  h1 {
+    font-size: 2em;
+    color: white;
+  }
+  
+  a {
+    display: block;
+    float: right;
+    line-height: $navbar-height;
+    padding-right:$gutter;
+    color: black;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+  
+  .small-logo-container {
+    padding-top: $navbar-height;
+    height: $navbar-height;
+    overflow: hidden;
+  }
+}
+.content {
+  padding-top: $navbar-height;
+  padding-left: $gutter;
+  
+  .big-logo {
+    font-size: 7em;
+   
+  }
+
+.filler {
+  color:#777;
+  width: 30%;
+  padding-top: 1em;
+  
+  p {
+      margin-top: 1em;
+    }
+  }
 }
