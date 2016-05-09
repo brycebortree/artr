@@ -9,20 +9,65 @@
 </head>
 <body>
 
-<!-- very basic navbar -->
-<% include nav%>
-<div class="behind col-md-offset-2 col-md-8 col-md-offset-2 col-xs-12 col-s-12">
-  <div>
-<!--    someday these will work -->   
-      <% if (typeof alerts !== 'undefined') { %>
-        <% for (key in alerts) { %>
-          <% alerts[key].forEach(function(thisMsg) { %>
-            <div class="alert alert-<%= key %>"><%= thisMsg %></div>
-          <% }); %>
-        <% } %>
-      <% } %>
+  <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="small-logo-container">
+            <a class="small-logo" href="/">↥The Artr</a>
+          </div>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/auth/login">Login</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
     </div>
-  <%- body%>
+
+    <div class="container-fluid big-logo-row">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 big-logo-container">
+            <h1 class="big-logo">↧The Artr</h1>
+          </div><!--/.col-xs-12 -->
+        </div><!--/.row -->
+      </div><!--/.container -->
+    </div><!--/.container-fluid -->
+
+   
+  <!-- greeting-->  
+   <% if (currentUser) { %>
+     <p>Hello, <%= currentUser.username %>!</p>
+    <% } else {%>
+      <p>Hello, new artist!</p>
+    <% } %>
+
+  <div class="filler">
+
+  <div class="behind col-md-offset-2 col-md-8 col-md-offset-2 col-xs-12 col-s-12">
+    <div>
+  <!--    someday these will work -->   
+        <% if (typeof alerts !== 'undefined') { %>
+          <% for (key in alerts) { %>
+            <% alerts[key].forEach(function(thisMsg) { %>
+              <div class="alert alert-<%= key %>"><%= thisMsg %></div>
+            <% }); %>
+          <% } %>
+        <% } %>
+      </div>
+    <%- body%>
+    </div>
+  </div>
 </div>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
    <script src="/js/script.js"></script>
