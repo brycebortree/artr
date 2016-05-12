@@ -29,7 +29,7 @@
         <li><a href="/gallery">Gallery</a></li>
         <% if (currentUser) { %>
         <li><a href="/user">Collection</a></li>
-         <li><p>Hello, <%= currentUser.username %>!<p></li>
+         <li><p class="li-p">Hello, <%= currentUser.username %>!<p></li>
         <% } else {%>
           <li><a href="/auth/login">Login</a></li>
           <li><p class="li-p">Hello, new artist!</p></li>

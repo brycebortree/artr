@@ -1,4 +1,5 @@
 <h1> The Gallery </h1>
+  <div class="art col-md-offset-2 col-md-8 col-md-offset-2">
     <% arts.forEach(function(art) { %>
       <div>
         <img src="<%= art.flickrURL %>">
@@ -6,9 +7,11 @@
       <div class="card">
         <p><%= art.twitUser %></p>
         <p><%= art.query %>, 2016</p>
+        <p> The Artr </p>
         <p><%= art.tweetStatement %></p>
       </div>
       <hr>
 <!--       <button class="addFav">Favorite </button>-->
     <% }); %>
+  </div>
   

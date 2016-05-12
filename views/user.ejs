@@ -3,11 +3,12 @@
   <p> Nothing lives here... yet. Go to the front page and make some art!</p>
 <% } %> 
 
-
+<div class="art col-md-offset-1 col-md-10 col-md-offset-1">
   <% arts.forEach(function(art) { %>
-    <div class="pics col-xs-4">
+    <div class="pics">
       <img src="<%= art.flickrURL %>">
     </div>
+    <br>
     <div class="card">
       <p><%= art.twitUser %></p>
       <p><%= art.query %>, 2016</p>
@@ -18,4 +19,4 @@
     <hr>
 <!--      <button class="delete">Delete</button>
  -->  <% }); %>
-  
+</div>
