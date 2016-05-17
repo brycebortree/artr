@@ -86,37 +86,40 @@ app.get("/gallery", function(req, res) {
    });
 });
 
+var myFlickr;
 Flickr.tokenOnly(flickrOptions, function(error, flickr) {
-  app.get("/art", function(req, res) {
-    var flicks = [];
-    var twits = [];
+  myFlickr = flickr
+});
 
-    var q = req.query.q;
+app.get("/art", function(req, res) {
+  var flicks = [];
+  var twits = [];
 
-    flickr.photos.search({
-      tags: q,
-      content_type: 1,
-      nojsoncallback: 1,
-      page: 1,
-      per_page: 15
-    }, function(err, flickResults) {
-      if(err) {
+  var q = req.query.q;
+
+  myFlickr.photos.search({
+    tags: q,
+    content_type: 1,
+    nojsoncallback: 1,
+    page: 1,
+    per_page: 15
+  }, function(err, flickResults) {
+    if(err) {
+      res.send(err);
+    };
+    flicks = flicks.concat(flickResults.photos.photo);
+
+    client.get('search/tweets', {
+      q: q,
+      result_type: 'popular',
+      lang: 'en'
+    }, function(error, tweets, response){
+      if(error) {
         res.send(err);
-      };
-      flicks = flicks.concat(flickResults.photos.photo);
-
-      client.get('search/tweets', {
-        q: q,
-        result_type: 'popular',
-        lang: 'en'
-      }, function(error, tweets, response){
-        if(error) {
-          res.send(err);
-        } else {
-        twits = twits.concat(tweets.statuses);
-        res.render("choose",  {flicks: flicks, twits: twits, q:q, alerts:req.flash()});
-        }
-      });
+      } else {
+      twits = twits.concat(tweets.statuses);
+      res.render("choose",  {flicks: flicks, twits: twits, q:q, alerts:req.flash()});
+      }
     });
   });
 });
