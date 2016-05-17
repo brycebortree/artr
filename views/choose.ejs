@@ -1,12 +1,17 @@
 <h3> Click on a picture and tweet of your choice to pair together as modern art! </h3>
 
-<div class="picContainer">
-  <% flicks.forEach(function(flick) { %>
-    <div class ="pics">
-      <p><img src="http://farm<%= flick.farm %>.staticflickr.com/<%= flick.server %>/<%= flick.id %>_<%= flick.secret %>_z.jpg" /></p>
-    </div>
-  <% }); %>
+
+
+<div id="container"></div>
+  <div id="images">
+    <% flicks.forEach(function(flick) { %>
+      <div class ="pics">
+        <p><img src="http://farm<%= flick.farm %>.staticflickr.com/<%= flick.server %>/<%= flick.id %>_<%= flick.secret %>_z.jpg" /></p>
+      </div>
+    <% }); %>
+  </div>
 </div>
+<p>
 
 <p></p>
 
