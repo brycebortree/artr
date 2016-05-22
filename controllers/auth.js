@@ -14,8 +14,9 @@ router.post('/signup', function(req, res) {
     where: {email: req.body.email},
     defaults: {username: req.body.username, password: req.body.password}
   }).spread(function(user, created) {
-    req.flash('info', 'Thanks for signing up! Please log in.')
-    res.redirect('/auth/login');
+    req.session.userId = user.id;
+    req.flash('info', 'Thanks for signing up!')
+    res.redirect('/');
   }).catch(function(err) {
     req.flash('danger', 'That username is already in use!');
     res.redirect('auth/signup');

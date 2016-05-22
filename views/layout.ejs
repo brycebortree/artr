@@ -22,14 +22,15 @@
       <a class="navbar-brand" href="/">The Artr</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="/gallery">Gallery</a></li>
         <% if (currentUser) { %>
         <li><a href="/user">Collection</a></li>
-         <li><p class="li-p">Hello, <%= currentUser.username %>!<p></li>
+        <li><p class="li-p">Hello, <%= currentUser.username %>!<p></li>
+        <li><a href="/auth/logout"> Logout </a></li>
         <% } else {%>
           <li><a href="/auth/login">Login</a></li>
           <li><p class="li-p">Hello, new artist!</p></li>
@@ -49,7 +50,7 @@
 
   <div class="behind col-md-offset-2 col-md-8 col-md-offset-2 col-xs-12 col-s-12">
     <div>
-  <!--    someday these will work -->   
+      <!-- alerts for user experience and error handling -->
         <% if (typeof alerts !== 'undefined') { %>
           <% for (key in alerts) { %>
             <% alerts[key].forEach(function(thisMsg) { %>
