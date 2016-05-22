@@ -14,10 +14,11 @@ router.post('/signup', function(req, res) {
     where: {email: req.body.email},
     defaults: {username: req.body.username, password: req.body.password}
   }).spread(function(user, created) {
-    res.redirect('/auth/login', {alerts:req.flash()});
+    req.flash('info', 'Thanks for signing up! Please log in.')
+    res.redirect('/auth/login');
   }).catch(function(err) {
     req.flash('danger', 'That username is already in use!');
-    req.redirect('auth/signup');
+    res.redirect('auth/signup');
   });
 });
 

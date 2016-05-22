@@ -1,3 +1,4 @@
+var http = require('http');
 var express = require('express');
 var ejsLayouts = require('express-ejs-layouts');
 var request = require('request');
