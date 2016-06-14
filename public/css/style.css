@@ -1,5 +1,16 @@
-div {
-  background-color: white;
+body {
+  background-image: url('../assets/wall4.jpeg');
+  background-attachment: fixed !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  font-family: 'Quicksand', sans-serif;
+}
+
+#transback {
+  background-color: rgba(255,255,255,0.5);
+  height: 100%;
 }
 
 div#border{
@@ -19,17 +30,6 @@ h1, h2, h3 {
   padding: 20px;
 }
 
-body {
-  background-image: url('../assets/wall4.jpeg');
-  background-attachment: fixed !important;
-  background-size: cover;
-  background-color: white;
-  color: black;
-  width: 100%;
-  height: 100%;
-  font-family: 'Quicksand', sans-serif;
-  align: center;
-}
 
 nav {
     text-align: center;
@@ -289,15 +289,6 @@ a:active {
 @import url('http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
 
   
-html {
-  background: #ffffff;
-  width: 100%;
-  width: 100vw;
-  height: 100%;
-  height: 100vh;
-  font-family: 'Raleway', sans-serif;
-}
-
 .navbar.navbar-clean {
   background: #fff;
   border-radius: 0;

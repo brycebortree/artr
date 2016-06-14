@@ -24,7 +24,7 @@
       </div>
 
       <!-- Toggling -->
-      <div class="collapse navbar-collapse" id="navbar">
+      <div class="collapse navbar-collapse pull-right" id="navbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
           <li><a href="/gallery">Gallery</a></li>
@@ -52,23 +52,21 @@
   </nav>
 
 
-    <div class="filler">
-
-    <div class="behind col-md-offset-2 col-md-8 col-md-offset-2 col-xs-12 col-s-12">
-      <div>
-        <!-- alerts for user experience and error handling -->
-          <% if (typeof alerts !== 'undefined') { %>
-            <% for (key in alerts) { %>
-              <% alerts[key].forEach(function(thisMsg) { %>
-                <div class="alert alert-<%= key %>"><%= thisMsg %></div>
-              <% }); %>
-            <% } %>
+  <div id="transback" class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-sm-12 col-xs-12">
+    <div>
+      <!-- alerts for user experience and error handling -->
+        <% if (typeof alerts !== 'undefined') { %>
+          <% for (key in alerts) { %>
+            <% alerts[key].forEach(function(thisMsg) { %>
+              <div class="alert alert-<%= key %>"><%= thisMsg %></div>
+            <% }); %>
           <% } %>
-        </div>
-      <%- body%>
+        <% } %>
       </div>
+      
+      <%- body%>
+    
     </div>
-  </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
    <script src="//masonry.desandro.com/masonry.pkgd.min.js"></script>
