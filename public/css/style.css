@@ -20,7 +20,7 @@ h1, h2, h3 {
 }
 
 body {
-  background-image: url('../assets/pillars.jpeg');
+  background-image: url('../assets/wall4.jpeg');
   background-attachment: fixed !important;
   background-size: cover;
   background-color: white;
@@ -70,8 +70,12 @@ a {
 }
 
 nav {
-  width: 80%;
-  margin-left: 10%;
+  width: 100%;
+
+}
+
+.icon-bar {
+  background-color: gray;
 }
 
 .inline {

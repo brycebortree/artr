@@ -5,7 +5,7 @@
 <div id="container"></div>
   <div id="images">
     <% flicks.forEach(function(flick) { %>
-      <div class ="pics">
+      <div class="pics">
         <p><img src="http://farm<%= flick.farm %>.staticflickr.com/<%= flick.server %>/<%= flick.id %>_<%= flick.secret %>_z.jpg" /></p>
       </div>
     <% }); %>

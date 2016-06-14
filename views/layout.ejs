@@ -7,66 +7,74 @@
   <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
 
-<nav class="navbar navbar-clean">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">The Artr</a>
-    </div>
-
-    <!-- Toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="/gallery">Gallery</a></li>
-        <% if (currentUser) { %>
-        <li><a href="/user">Collection</a></li>
-        <li><p class="li-p">Hello, <%= currentUser.username %>!<p></li>
-        <li><a href="/auth/logout"> Logout </a></li>
-        <% } else {%>
-          <li><a href="/auth/login">Login</a></li>
-          <li><p class="li-p">Hello, new artist!</p></li>
-        <% } %>
-      </ul>
-      <div class="greeting">
-        <!-- greeting-->  
-
+  <nav class="navbar navbar-clean">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">The Artr</a>
       </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
 
+      <!-- Toggling -->
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+          <li><a href="/gallery">Gallery</a></li>
 
-  <div class="filler">
+          <% if (currentUser) { %>
 
-  <div class="behind col-md-offset-2 col-md-8 col-md-offset-2 col-xs-12 col-s-12">
-    <div>
-      <!-- alerts for user experience and error handling -->
-        <% if (typeof alerts !== 'undefined') { %>
-          <% for (key in alerts) { %>
-            <% alerts[key].forEach(function(thisMsg) { %>
-              <div class="alert alert-<%= key %>"><%= thisMsg %></div>
-            <% }); %>
+            <li><a href="/user">Collection</a></li>
+            <li><p class="li-p">Hello, <%= currentUser.username %>!<p></li>
+            <li><a href="/auth/logout"> Logout </a></li>
+
+          <% } else { %>
+
+            <li><a href="/auth/login">Login</a></li>
+            <li><p class="li-p">Hello, new artist!</p></li>
+
           <% } %>
-        <% } %>
+        </ul>
+        <div class="greeting">
+          <!-- greeting-->  
+
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+    <div class="filler">
+
+    <div class="behind col-md-offset-2 col-md-8 col-md-offset-2 col-xs-12 col-s-12">
+      <div>
+        <!-- alerts for user experience and error handling -->
+          <% if (typeof alerts !== 'undefined') { %>
+            <% for (key in alerts) { %>
+              <% alerts[key].forEach(function(thisMsg) { %>
+                <div class="alert alert-<%= key %>"><%= thisMsg %></div>
+              <% }); %>
+            <% } %>
+          <% } %>
+        </div>
+      <%- body%>
       </div>
-    <%- body%>
     </div>
   </div>
-</div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
    <script src="//masonry.desandro.com/masonry.pkgd.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
    <script src="/js/script.js"></script>
 </body>
 </html>
