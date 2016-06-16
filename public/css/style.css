@@ -13,6 +13,8 @@ body {
   background-color: rgba(255,255,255,0.8);
   margin-top: 0;
   margin-bottom: 20px;
+  height: 100%;
+  padding: 100px;
 }
 
 div.border{
@@ -138,6 +140,7 @@ a:active {
 
 .form-group {
   align: center;
+  padding-bottom: 200px;
 }
 
 /*search button color*/
@@ -240,6 +243,15 @@ a:active {
   }
 
 
+@media (max-width: 991px) {
+  #transback {
+    background-color: rgba(255,255,255,0.8);
+    margin-top: 0;
+    margin-bottom: 20px;
+    height: 400px;
+    padding: 100px;
+  }
+}
 
 @media (max-width: 768px) {
 
@@ -294,6 +306,14 @@ a:active {
     width: 90%;
     margin: 5%;
     padding-bottom: 40px;
+  }
+
+  #transback {
+    background-color: rgba(255,255,255,0.8);
+    margin-top: 0;
+    margin-bottom: 20px;
+    height: 550px;
+    padding: 100px;
   }
 }
 
