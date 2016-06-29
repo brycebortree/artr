@@ -1,7 +1,7 @@
 /*styles across all pages*/
 
 body {
-  background-image: url('../assets/wall4.jpeg');
+  background-image: url('./assets/wall4.jpeg');
   background-attachment: fixed !important;
   background-repeat: no-repeat;
   background-size: cover;
